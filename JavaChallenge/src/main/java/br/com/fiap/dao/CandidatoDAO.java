@@ -1,0 +1,135 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fiap.resources.CandidatoTO;
+
+public class CandidatoDAO {
+private Connection conexao;
+private List<CandidatoTO> listaCandidatos;
+	
+	public void Inserir(CandidatoTO candidato) throws SQLException{
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement SQL = null;
+		
+		try {
+			SQL = conexao.prepareStatement("INSERT INTO Candidato (id_candidato, nome_candidato, senha_candidato, tipo_Usuario, email_candidato, cpf, genero_candidato) VALUES(?,?,?,?,?,?,?)");
+			SQL.setString(1, candidato.getId());
+			SQL.setString(2, candidato.getNome());
+			SQL.setString(3, candidato.getSenha());
+			SQL.setString(4, candidato.tipoUsuario());
+			SQL.setString(5, candidato.getEmail());
+			SQL.setString(6, candidato.getCpf());
+			SQL.setString(7, candidato.retornarGenero());
+			
+			
+			SQL.executeUpdate();
+			conexao.close();
+			SQL.close();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+//	get all
+	public List<CandidatoTO> listar(){
+		
+//		List<CandidatoTO> listaCandidatos = new ArrayList<>();
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement SQL = null;
+		ResultSet rs = null;
+		
+		try {
+			SQL = conexao.prepareStatement("SELECT * FROM Candidato");
+			rs = SQL.executeQuery();
+			
+			while(rs.next()) {
+				String id = rs.getString("id_candidato");
+				String nome = rs.getString("nome_candidato");
+				String senha = rs.getString("senha_candidato");
+				String tipoUsuario = rs.getString("tipo_usuario");
+				String email = rs.getString("email_candidato");
+				String cpf = rs.getString("cpf");
+				String genero = rs.getString("genero_candidato");
+				
+				CandidatoTO candidato = new CandidatoTO(id, nome, senha, tipoUsuario, email, cpf, genero);
+				listaCandidatos.add(candidato);
+			}
+			
+		SQL.close();
+		rs.close();
+		conexao.close();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listaCandidatos;	
+
+	}
+	
+	public CandidatoTO buscarPorID(String id) throws SQLException{
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement SQL = null;
+		String idC = null;
+		String nome= null;
+		String senha= null;
+		String tipoUsuario= null;
+		String email= null;
+		String cpf= null;
+		String genero= null;
+		
+		CandidatoTO candidato = new CandidatoTO(idC, nome, senha, tipoUsuario, email, cpf, genero);
+		try{
+			SQL = conexao.prepareStatement("SELECT * FROM Candidato WHERE id_candidato = ?");
+			SQL.setString(1, id);	ResultSet rs = SQL.executeQuery();
+			
+			while(rs.next()) {
+				idC = rs.getString("id_candidato");
+				nome = rs.getString("nome_candidato");
+				senha = rs.getString("senha_candidato");
+				tipoUsuario = rs.getString("tipo_Usuario");
+				email = rs.getString("email_candidato");
+				cpf = rs.getString("cpf");
+				genero = rs.getString("genero_candidato");
+				
+			}
+	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(idC.equals(id) ){
+			return candidato;
+		}else {
+			return null;
+		}
+	}
+	
+	
+	
+	public void atualizar(CandidatoTO candidato) throws SQLException{
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement SQL = null;
+		
+		try {
+			SQL = conexao.prepareStatement("UPDATE Candidato SET nome_candidato = ?, SET senha_candidato =?, SET tipo_Usuario = ?, SET email_candidato = ?, SET cpf = ?, SET genero_candidato = ?");
+			SQL.setString(1, candidato.getNome());
+			SQL.setString(2, candidato.getSenha());
+			SQL.setString(3, candidato.tipoUsuario());
+			SQL.setString(4, candidato.getEmail());
+			SQL.setString(5, candidato.getCpf());
+			SQL.setString(6, candidato.retornarGenero());
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+}
