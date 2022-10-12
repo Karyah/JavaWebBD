@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.fiap.dao.CandidatoDAO;
-import br.com.fiap.resources.CandidatoTO;
+import br.com.fiap.resource.CandidatoTO;
 
 public class CandidatoBO {
 	
@@ -15,7 +15,6 @@ public class CandidatoBO {
 	public List<CandidatoTO> listar(){
 		cdao = new CandidatoDAO();
 		return cdao.listar();
-	
 		}
 
 	

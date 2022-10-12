@@ -7,40 +7,40 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.fiap.resources.CandidatoTO;
+
+import br.com.fiap.resource.CandidatoTO;
 
 public class CandidatoDAO {
-private Connection conexao;
-private List<CandidatoTO> listaCandidatos;
-	
-	public void Inserir(CandidatoTO candidato) throws SQLException{
-		conexao = GerenciadorBD.obterConexao();
-		PreparedStatement SQL = null;
+	private Connection conexao;
 		
-		try {
-			SQL = conexao.prepareStatement("INSERT INTO Candidato (id_candidato, nome_candidato, senha_candidato, tipo_Usuario, email_candidato, cpf, genero_candidato) VALUES(?,?,?,?,?,?,?)");
-			SQL.setString(1, candidato.getId());
-			SQL.setString(2, candidato.getNome());
-			SQL.setString(3, candidato.getSenha());
-			SQL.setString(4, candidato.tipoUsuario());
-			SQL.setString(5, candidato.getEmail());
-			SQL.setString(6, candidato.getCpf());
-			SQL.setString(7, candidato.retornarGenero());
-			
-			
-			SQL.executeUpdate();
-			conexao.close();
-			SQL.close();
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
+//	public void Inserir(CandidatoTO candidato) throws SQLException{
+//		conexao = GerenciadorBD.obterConexao();
+//		PreparedStatement SQL = null;
+//		
+//		try {
+//			SQL = conexao.prepareStatement("INSERT INTO Candidato (id_candidato, nome_candidato, senha_candidato, tipo_Usuario, email_candidato, cpf, genero_candidato) VALUES(?,?,?,?,?,?,?)");
+//			SQL.setString(1, candidato.getId());
+//			SQL.setString(2, candidato.getNome());
+//			SQL.setString(3, candidato.getSenha());
+//			SQL.setString(4, candidato.tipoUsuario());
+//			SQL.setString(5, candidato.getEmail());
+//			SQL.setString(6, candidato.getCpf());
+//			SQL.setString(7, candidato.retornarGenero());
+//			
+//			
+//			SQL.executeUpdate();
+//			conexao.close();
+//			SQL.close();
+//			
+//		}catch(SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
 //	get all
 	public List<CandidatoTO> listar(){
 		
-//		List<CandidatoTO> listaCandidatos = new ArrayList<>();
+		List<CandidatoTO> listaCandidatos = new ArrayList<>();
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
 		ResultSet rs = null;
@@ -59,17 +59,19 @@ private List<CandidatoTO> listaCandidatos;
 				String genero = rs.getString("genero_candidato");
 				
 				CandidatoTO candidato = new CandidatoTO(id, nome, senha, tipoUsuario, email, cpf, genero);
+				System.out.println(id);
 				listaCandidatos.add(candidato);
 			}
 			
-		SQL.close();
-		rs.close();
-		conexao.close();
+			conexao.close();
+			SQL.close();
+			rs.close();
 			
+		
 		}catch(SQLException e) {
 			e.printStackTrace();
+			System.err.println("erro");
 		}
-		
 		return listaCandidatos;	
 
 	}
@@ -126,6 +128,17 @@ private List<CandidatoTO> listaCandidatos;
 			SQL.setString(4, candidato.getEmail());
 			SQL.setString(5, candidato.getCpf());
 			SQL.setString(6, candidato.retornarGenero());
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deletar(String id) throws SQLException{
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement SQL = null;
+		
+		try {
+			SQL = conexao.prepareStatement("");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

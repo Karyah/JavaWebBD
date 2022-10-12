@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import br.com.fiap.resources.EmpresaTO;
+import br.com.fiap.resource.EmpresaTO;
 
 public class VagaDAO {
 private Connection conexao;

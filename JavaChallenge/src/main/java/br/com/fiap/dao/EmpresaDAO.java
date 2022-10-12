@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.resources.EmpresaTO;
+import br.com.fiap.resource.EmpresaTO;
 
 public class EmpresaDAO {
 private Connection conexao;

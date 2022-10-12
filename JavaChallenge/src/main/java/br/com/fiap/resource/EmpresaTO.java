@@ -1,4 +1,4 @@
-package br.com.fiap.resources;
+package br.com.fiap.resource;
 
 
 public class EmpresaTO extends UsuarioTO{

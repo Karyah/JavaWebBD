@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
-import br.com.fiap.resources.FoneTO;
+import br.com.fiap.resource.FoneTO;
 
 public class FoneEmpresaDAO {
 private Connection conexao;

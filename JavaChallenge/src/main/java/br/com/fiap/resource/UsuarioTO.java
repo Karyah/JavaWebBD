@@ -1,4 +1,4 @@
-package br.com.fiap.resources;
+package br.com.fiap.resource;
 
 import java.util.List;
 import java.util.Random;
@@ -15,9 +15,13 @@ public abstract class UsuarioTO {
 	private EnumTipoUsuario tipoUsuario;
 	
 	Random random = new Random();
-	
+
 	public String getId() {
 		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNome() {
