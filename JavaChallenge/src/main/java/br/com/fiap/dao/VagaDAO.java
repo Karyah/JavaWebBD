@@ -80,8 +80,9 @@ private Connection conexao;
 				vaga.setDescricao(rs.getString("descricao_vaga"));
 				int idEmpresa = rs.getInt("id_empresa");
 				
-				
-	
+				EmpresaDAO empresaDAO = new EmpresaDAO();
+				EmpresaTO objetoEmpresa = empresaDAO.buscarPorID(idEmpresa);
+				vaga.setEmpresa(objetoEmpresa);
 				
 			}
 			

@@ -46,22 +46,20 @@ public class EmpresaTO extends UsuarioTO{
 		setTipoUsuario(EnumTipoUsuario.EMPRESA);
 		return "Empresa";
 	}
+//	
+//	public void cadastrar(String nome, String email,String CNPJ, String senha) {
+//		super.setNome(nome);
+//		super.setEmail(email);
+//		setCnpj(CNPJ);
+//		setSenha(senha);
+//	}
 	
-	public void cadastrar(String nome, String email,String CNPJ, String senha) {
-		super.setNome(nome);
-		super.setEmail(email);
-		setCnpj(CNPJ);
-		setSenha(senha);
-	}
-	
-	public void criarVaga(String nome, String descricao) {
-		vaga = new VagaTO();
-		vaga.gerarId();
-		vaga.setNome(nome);
-		vaga.setDescricao(descricao);
-		vaga.setEmpresa(this);
-
-	}
+//	public void criarVaga(String nome, String descricao) {
+//		vaga = new VagaTO();
+//		vaga.setNome(nome);
+//		vaga.setDescricao(descricao);
+//		vaga.setEmpresa(this);
+//	}
 	
 //	public void mostrarMinhasVagas() {
 //		for(int i =0 ; i<minhasVagas.size();i++) {
