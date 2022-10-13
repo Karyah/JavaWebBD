@@ -40,4 +40,14 @@ public class CandidatoBO {
 			e.printStackTrace();
 		}
 	}
+	
+//	Delete
+	public void deletar(String id) {
+		cdao = new CandidatoDAO();
+		try {
+			cdao.deletar(id);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

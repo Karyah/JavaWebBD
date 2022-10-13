@@ -37,6 +37,8 @@ public class CandidatoDAO {
 //		}
 //	}
 //	
+	
+	
 //	get all
 	public List<CandidatoTO> listar(){
 		
@@ -76,6 +78,8 @@ public class CandidatoDAO {
 
 	}
 	
+//	get by id
+	
 	public CandidatoTO buscarPorID(String id) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
@@ -102,7 +106,9 @@ public class CandidatoDAO {
 				genero = rs.getString("genero_candidato");
 				
 			}
-	
+			
+			SQL.close();
+			conexao.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -128,6 +134,10 @@ public class CandidatoDAO {
 			SQL.setString(4, candidato.getEmail());
 			SQL.setString(5, candidato.getCpf());
 			SQL.setString(6, candidato.retornarGenero());
+			
+			
+			SQL.close();
+			conexao.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -138,7 +148,11 @@ public class CandidatoDAO {
 		PreparedStatement SQL = null;
 		
 		try {
-			SQL = conexao.prepareStatement("");
+			SQL = conexao.prepareStatement("DELETE FROM Candidato WHERE id_candidato =  ?");
+			SQL.setString(1, id);
+			
+			SQL.executeUpdate();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
