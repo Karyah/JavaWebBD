@@ -26,14 +26,14 @@ public class CandidatoResource {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public CandidatoTO buscar(String id) {
+	public CandidatoTO buscar(int id) {
 		return candidatoBO.buscarPorId(id);
 	}
 	
 	@PUT
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response atualizar(CandidatoTO candidato, @PathParam("id") String id) {
+	public Response atualizar(CandidatoTO candidato, @PathParam("id") int id) {
 		candidato.setId(id);
 		candidatoBO.atualizar(candidato);
 		return Response.ok().build();

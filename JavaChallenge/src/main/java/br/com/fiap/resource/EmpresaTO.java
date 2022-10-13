@@ -13,7 +13,7 @@ public class EmpresaTO extends UsuarioTO{
 		super();
 	}
 
-	public EmpresaTO(String id, String nome, String senha, String tipoUsuario, String email, String cnpj2) {
+	public EmpresaTO(int id, String nome, String senha, String tipoUsuario, String email, String cnpj2) {
 		super();
 		// TODO Auto-generated constructor stub
 	}

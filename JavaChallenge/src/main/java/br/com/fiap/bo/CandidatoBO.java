@@ -19,7 +19,7 @@ public class CandidatoBO {
 
 	
 //  Get
-	public CandidatoTO buscarPorId(String id) {
+	public CandidatoTO buscarPorId(int id) {
 		cdao= new CandidatoDAO();
 		try {
 			return cdao.buscarPorID(id);
@@ -42,7 +42,7 @@ public class CandidatoBO {
 	}
 	
 //	Delete
-	public void deletar(String id) {
+	public void deletar(int id) {
 		cdao = new CandidatoDAO();
 		try {
 			cdao.deletar(id);

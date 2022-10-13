@@ -17,7 +17,7 @@ private Connection conexao;
 			SQL.setString(1, empresa.getVaga().getId());
 			SQL.setString(2, empresa.getVaga().getNome());
 			SQL.setString(3, empresa.getVaga().getDescricao());
-			SQL.setString(4,empresa.getVaga().getEmpresa().getId());
+			SQL.setInt(4,empresa.getVaga().getEmpresa().getId());
 			
 			SQL.executeUpdate();
 			SQL.close();

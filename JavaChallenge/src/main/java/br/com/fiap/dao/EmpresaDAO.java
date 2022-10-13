@@ -48,7 +48,7 @@ private List<EmpresaTO> listaEmpresas;
 			rs = SQL.executeQuery();
 			
 			while(rs.next()) {
-				String id = rs.getString("id_empresa");
+				int id = rs.getInt("id_empresa");
 				String nome = rs.getString("nome_empresa");
 				String senha = rs.getString("senha_empresa");
 				String tipoUsuario = rs.getString("tipo_usuario");
@@ -66,10 +66,10 @@ private List<EmpresaTO> listaEmpresas;
 	
 //	get by id
 	
-	public EmpresaTO buscarPorID(String id) throws SQLException{
+	public EmpresaTO buscarPorID(int id) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
-		String idEmp = null;
+		int idEmp = 0;
 		String nome= null;
 		String senha= null;
 		String tipoUsuario= null;
@@ -80,10 +80,10 @@ private List<EmpresaTO> listaEmpresas;
 		
 		try{
 			SQL = conexao.prepareStatement("SELECT * FROM Empresa WHERE id_empresa = ?");
-			SQL.setString(1, id);	ResultSet rs = SQL.executeQuery();
+			SQL.setInt(1, id);	ResultSet rs = SQL.executeQuery();
 			
 			while(rs.next()) {
-				idEmp = rs.getString("id_empresa");
+				idEmp = rs.getInt("id_empresa");
 				nome = rs.getString("nome_empresa");
 				senha = rs.getString("senha_empresa");
 				tipoUsuario = rs.getString("tipo_Usuario");
@@ -99,7 +99,7 @@ private List<EmpresaTO> listaEmpresas;
 			e.printStackTrace();
 		}
 		
-		if(idEmp.equals(id) ){
+		if(idEmp==id){
 			return empresa;
 		}else {
 			return null;
@@ -131,13 +131,13 @@ private List<EmpresaTO> listaEmpresas;
 	
 //	delete
 	
-	public void deletar(String id) throws SQLException{
+	public void deletar(int id) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
 		
 		try {
 			SQL = conexao.prepareStatement("DELETE FROM Empresa WHERE id_empresa =  ?");
-			SQL.setString(1, id);
+			SQL.setInt(1, id);
 			
 			SQL.executeUpdate();
 			

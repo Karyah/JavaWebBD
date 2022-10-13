@@ -52,7 +52,7 @@ public class CandidatoDAO {
 			rs = SQL.executeQuery();
 			
 			while(rs.next()) {
-				String id = rs.getString("id_candidato");
+				int id = rs.getInt("id_candidato");
 				String nome = rs.getString("nome_candidato");
 				String senha = rs.getString("senha_candidato");
 				String tipoUsuario = rs.getString("tipo_usuario");
@@ -80,10 +80,10 @@ public class CandidatoDAO {
 	
 //	get by id
 	
-	public CandidatoTO buscarPorID(String id) throws SQLException{
+	public CandidatoTO buscarPorID(int id) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
-		String idC = null;
+		int idC =0;
 		String nome= null;
 		String senha= null;
 		String tipoUsuario= null;
@@ -94,10 +94,10 @@ public class CandidatoDAO {
 		CandidatoTO candidato = new CandidatoTO(idC, nome, senha, tipoUsuario, email, cpf, genero);
 		try{
 			SQL = conexao.prepareStatement("SELECT * FROM Candidato WHERE id_candidato = ?");
-			SQL.setString(1, id);	ResultSet rs = SQL.executeQuery();
+			SQL.setInt(1, id);	ResultSet rs = SQL.executeQuery();
 			
 			while(rs.next()) {
-				idC = rs.getString("id_candidato");
+				idC = rs.getInt("id_candidato");
 				nome = rs.getString("nome_candidato");
 				senha = rs.getString("senha_candidato");
 				tipoUsuario = rs.getString("tipo_Usuario");
@@ -113,7 +113,7 @@ public class CandidatoDAO {
 			e.printStackTrace();
 		}
 		
-		if(idC.equals(id) ){
+		if(idC==id){
 			return candidato;
 		}else {
 			return null;
@@ -143,13 +143,13 @@ public class CandidatoDAO {
 		}
 	}
 	
-	public void deletar(String id) throws SQLException{
+	public void deletar(int id) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
 		
 		try {
 			SQL = conexao.prepareStatement("DELETE FROM Candidato WHERE id_candidato =  ?");
-			SQL.setString(1, id);
+			SQL.setInt(1, id);
 			
 			SQL.executeUpdate();
 			

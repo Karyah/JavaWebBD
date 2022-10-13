@@ -18,7 +18,7 @@ private Connection conexao;
 			
 			SQL.setInt(1, fone.getSequencia());
 			SQL.setInt(2, fone.getTelefone());
-			SQL.setString(3, fone.getEmpresa().getId());
+			SQL.setInt(3, fone.getEmpresa().getId());
 		
 			
 			SQL.executeUpdate();

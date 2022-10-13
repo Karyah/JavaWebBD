@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public abstract class UsuarioTO {
-	private String id;
+	private int id;
 	private String nome;
 	private String senha;
 	private List<FoneTO> telefones;
@@ -16,11 +16,11 @@ public abstract class UsuarioTO {
 	
 	Random random = new Random();
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -81,12 +81,12 @@ public abstract class UsuarioTO {
 		}
 	}
 	
-	public void gerarID() {
-		if(tipoUsuario==EnumTipoUsuario.EMPRESA){
-			id = "E" + random.nextInt(999); 
-		}else {
-			id = "C" + random.nextInt(999);
-			
-		}
-	}
+//	public void gerarID() {
+//		if(tipoUsuario==EnumTipoUsuario.EMPRESA){
+//			id = "E" + random.nextInt(999); 
+//		}else {
+//			id = "C" + random.nextInt(999);
+//			
+//		}
+//	}
 }
