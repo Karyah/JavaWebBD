@@ -10,11 +10,27 @@ public class CandidatoBO {
 	
 	private CandidatoDAO cdao;
 	
+	public void inserir(CandidatoTO candidato) {
+		cdao = new CandidatoDAO();
+		try {
+			cdao.inserir(candidato);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 //	Get all
 	
 	public List<CandidatoTO> listar(){
 		cdao = new CandidatoDAO();
-		return cdao.listar();
+		try {
+			return cdao.listar();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 		}
 
 	

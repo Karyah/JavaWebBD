@@ -1,6 +1,8 @@
 package br.com.fiap.resource;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class EmpresaTO extends UsuarioTO{
 	private String cnpj;
 	private VagaTO vaga;
@@ -17,9 +19,6 @@ public class EmpresaTO extends UsuarioTO{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-
-
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;

@@ -9,38 +9,40 @@ import java.util.List;
 
 
 import br.com.fiap.resource.CandidatoTO;
+import br.com.fiap.resource.EnumGenero;
+import br.com.fiap.resource.EnumTipoUsuario;
 
 public class CandidatoDAO {
 	private Connection conexao;
 		
-//	public void Inserir(CandidatoTO candidato) throws SQLException{
-//		conexao = GerenciadorBD.obterConexao();
-//		PreparedStatement SQL = null;
-//		
-//		try {
-//			SQL = conexao.prepareStatement("INSERT INTO Candidato (id_candidato, nome_candidato, senha_candidato, tipo_Usuario, email_candidato, cpf, genero_candidato) VALUES(?,?,?,?,?,?,?)");
-//			SQL.setString(1, candidato.getId());
-//			SQL.setString(2, candidato.getNome());
-//			SQL.setString(3, candidato.getSenha());
-//			SQL.setString(4, candidato.tipoUsuario());
-//			SQL.setString(5, candidato.getEmail());
-//			SQL.setString(6, candidato.getCpf());
-//			SQL.setString(7, candidato.retornarGenero());
-//			
-//			
-//			SQL.executeUpdate();
-//			conexao.close();
-//			SQL.close();
-//			
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
+	public void inserir(CandidatoTO candidato) throws SQLException{
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement SQL = null;
+		
+		try {
+			SQL = conexao.prepareStatement("INSERT INTO Candidato (id_candidato, nome_candidato, senha_candidato, tipo_Usuario, email_candidato, cpf, genero_candidato) VALUES(?,?,?,?,?,?,?)");
+			SQL.setInt(1, candidato.getId());
+			SQL.setString(2, candidato.getNome());
+			SQL.setString(3, candidato.getSenha());
+			SQL.setString(4, candidato.tipoUsuario());
+			SQL.setString(5, candidato.getEmail());
+			SQL.setString(6, candidato.getCpf());
+			SQL.setString(7, candidato.retornarGenero());
+			
+			
+			SQL.executeUpdate();
+			conexao.close();
+			SQL.close();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	
 //	get all
-	public List<CandidatoTO> listar(){
+	public List<CandidatoTO> listar() throws SQLException{
 		
 		List<CandidatoTO> listaCandidatos = new ArrayList<>();
 		conexao = GerenciadorBD.obterConexao();
@@ -83,27 +85,34 @@ public class CandidatoDAO {
 	public CandidatoTO buscarPorID(int id) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
-		int idC =0;
-		String nome= null;
-		String senha= null;
-		String tipoUsuario= null;
-		String email= null;
-		String cpf= null;
-		String genero= null;
 		
-		CandidatoTO candidato = new CandidatoTO(idC, nome, senha, tipoUsuario, email, cpf, genero);
+		CandidatoTO candidato = new CandidatoTO();
 		try{
 			SQL = conexao.prepareStatement("SELECT * FROM Candidato WHERE id_candidato = ?");
 			SQL.setInt(1, id);	ResultSet rs = SQL.executeQuery();
 			
 			while(rs.next()) {
-				idC = rs.getInt("id_candidato");
-				nome = rs.getString("nome_candidato");
-				senha = rs.getString("senha_candidato");
-				tipoUsuario = rs.getString("tipo_Usuario");
-				email = rs.getString("email_candidato");
-				cpf = rs.getString("cpf");
-				genero = rs.getString("genero_candidato");
+				candidato.setNome(rs.getString("nome_candidato"));
+				candidato.setSenha(rs.getString("senha_candidato"));
+				String tipoUsuario = rs.getString("tipoUsuario");
+				if(tipoUsuario.equals("Candidato")) {
+					candidato.setTipoUsuario(EnumTipoUsuario.CANDIDATO);
+				}
+				if(tipoUsuario.equals("Empresa")) {
+					candidato.setTipoUsuario(EnumTipoUsuario.EMPRESA);
+				}
+				candidato.setEmail(rs.getString("email_candidato"));
+				candidato.setCpf(rs.getString("cpf"));
+				String genero = (rs.getString("genero_candidato"));
+				if(genero.equals("Masculino")) {
+					candidato.setGenero(EnumGenero.MASCULINO);
+				}
+				if(genero.equals("Feminino")) {
+					candidato.setGenero(EnumGenero.FEMININO);
+				}
+				if(genero.equals("Não Binário")) {
+					candidato.setGenero(EnumGenero.NAO_BINARIO);
+				}
 				
 			}
 			
@@ -113,15 +122,11 @@ public class CandidatoDAO {
 			e.printStackTrace();
 		}
 		
-		if(idC==id){
-			return candidato;
-		}else {
-			return null;
-		}
+		return candidato;
 	}
 	
 	
-	
+//	Update
 	public void atualizar(CandidatoTO candidato) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
@@ -143,6 +148,7 @@ public class CandidatoDAO {
 		}
 	}
 	
+//	Delete
 	public void deletar(int id) throws SQLException{
 		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;

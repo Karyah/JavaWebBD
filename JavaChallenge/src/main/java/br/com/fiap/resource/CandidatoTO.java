@@ -16,13 +16,6 @@ public class CandidatoTO extends UsuarioTO{
 
 	public CandidatoTO(int id, String nome, String senha, String tipoUsuario, String email, String cpf, String genero) {
 		// TODO Auto-generated constructor stub
-//		id = super.getId();
-//		nome = super.getNome();
-//		senha = super.getSenha();
-//		tipoUsuario = this.tipoUsuario();
-//		email = super.getEmail();
-//		cpf = this.cpf;
-//		genero = this.retornarGenero();
 	}
 
 	public String getCpf() {

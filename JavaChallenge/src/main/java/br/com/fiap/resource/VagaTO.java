@@ -5,21 +5,34 @@ import java.util.Random;
 
 
 public class VagaTO {
-	private String id;
+	private int  id;
 	private String nome;
 	private String descricao;
 //	private ArrayList<Tags> tagsVaga;
 	private EmpresaTO empresa;
 	private ArrayList<CandidatoTO> candidatosInscritos;
 	private ArrayList<VagaTO> todasVagas;
+
 	
-	Random random =new Random();
 	
-	public String getId() {
+	public VagaTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public VagaTO(int id, String nome, String descricao, EmpresaTO empresa) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.empresa = empresa;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -71,10 +84,7 @@ public class VagaTO {
 		this.todasVagas = todasVagas;
 	}
 
-	public String gerarId() {
-		id = "V" + random.nextInt(999);
-		return id;
-	}
+
 	
 
 }
