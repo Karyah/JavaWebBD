@@ -15,8 +15,8 @@ import br.com.fiap.resource.EnumTipoUsuario;
 public class CandidatoDAO {
 	private Connection conexao = null;
 	
-	public CandidatoDAO(){
-		this.conexao=new GerenciadorBD().obterConexao();
+	public CandidatoDAO() {
+		this.conexao = new GerenciadorBD().obterConexao();
 	}
 	
 	public void inserir(CandidatoTO candidato) throws SQLException{

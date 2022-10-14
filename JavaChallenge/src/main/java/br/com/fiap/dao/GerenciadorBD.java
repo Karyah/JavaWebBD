@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class GerenciadorBD {
+	
 	private Connection conexao = null;
 	
-	public Connection obterConexao() {
-
+	public Connection obterConexao() {		
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -23,3 +23,4 @@ public class GerenciadorBD {
 		return null;
 	}
 }
+
