@@ -3,8 +3,9 @@ package br.com.fiap.bo;
 import java.sql.SQLException;
 import java.util.List;
 
-
+import br.com.fiap.dao.CandidatoDAO;
 import br.com.fiap.dao.EmpresaDAO;
+import br.com.fiap.resource.CandidatoTO;
 import br.com.fiap.resource.EmpresaTO;
 
 
@@ -12,6 +13,16 @@ public class EmpresaBO {
 	
 	private EmpresaDAO empdao;
 	
+	
+	public void inserir(EmpresaTO empresa) {
+		empdao = new EmpresaDAO();
+		try {
+			empdao.inserir(empresa);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 //	Get all
 	
 	public List<EmpresaTO> listar(){

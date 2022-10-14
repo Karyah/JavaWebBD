@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class GerenciadorBD {
+	private Connection conexao = null;
+	
 	public Connection obterConexao() {
 		
-		Connection conexao = null;
+//		Connection conexao = null;
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

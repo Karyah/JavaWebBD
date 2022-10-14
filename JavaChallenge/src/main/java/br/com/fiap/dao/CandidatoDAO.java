@@ -14,9 +14,12 @@ import br.com.fiap.resource.EnumTipoUsuario;
 
 public class CandidatoDAO {
 	private Connection conexao = null;
-		
+	
+	public CandidatoDAO(){
+		this.conexao=new GerenciadorBD().obterConexao();
+	}
+	
 	public void inserir(CandidatoTO candidato) throws SQLException{
-		this.conexao = new GerenciadorBD().obterConexao();
 		PreparedStatement SQL = null;
 		
 		try {
@@ -45,7 +48,7 @@ public class CandidatoDAO {
 	public List<CandidatoTO> listar() throws SQLException{
 		
 		List<CandidatoTO> listaCandidatos = new ArrayList<>();
-		this.conexao = new GerenciadorBD().obterConexao();
+
 		PreparedStatement SQL = null;
 		ResultSet rs = null;
 		
@@ -83,7 +86,7 @@ public class CandidatoDAO {
 //	get by id
 	
 	public CandidatoTO buscarPorID(int id) throws SQLException{
-		this.conexao = new GerenciadorBD().obterConexao();
+		
 		PreparedStatement SQL = null;
 		
 		CandidatoTO candidato = new CandidatoTO();
@@ -128,7 +131,7 @@ public class CandidatoDAO {
 	
 //	Update
 	public void atualizar(CandidatoTO candidato) throws SQLException{
-		this.conexao = new GerenciadorBD().obterConexao();
+
 		PreparedStatement SQL = null;
 		
 		try {
@@ -150,7 +153,7 @@ public class CandidatoDAO {
 	
 //	Delete
 	public void deletar(int id) throws SQLException{
-		this.conexao = new GerenciadorBD().obterConexao();
+		
 		PreparedStatement SQL = null;
 		
 		try {

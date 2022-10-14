@@ -15,10 +15,12 @@ import br.com.fiap.resource.EnumTipoUsuario;
 public class EmpresaDAO {
 private Connection conexao;
 
-	
+	public EmpresaDAO() {
+		this.conexao = new GerenciadorBD().obterConexao();
+	}
 // Insert
-	public void Inserir(EmpresaTO empresa) throws SQLException{
-		conexao = GerenciadorBD.obterConexao();
+	public void inserir(EmpresaTO empresa) throws SQLException{
+
 		PreparedStatement SQL = null;
 		
 		try {
@@ -43,7 +45,7 @@ private Connection conexao;
 
 //	Get All
 	public List<EmpresaTO> listar(){ 
-		conexao = GerenciadorBD.obterConexao();
+		
 		PreparedStatement SQL = null;
 		ResultSet rs = null;
 		List<EmpresaTO> listaEmpresas= new ArrayList<>();
@@ -72,7 +74,7 @@ private Connection conexao;
 //	Get by id
 	
 	public EmpresaTO buscarPorID(int id) throws SQLException{
-		conexao = GerenciadorBD.obterConexao();
+		
 		PreparedStatement SQL = null;
 		
 		EmpresaTO empresa = new EmpresaTO();
@@ -108,7 +110,7 @@ private Connection conexao;
 //	Update
 	
 	public void atualizar(EmpresaTO empresa) throws SQLException{
-		conexao = GerenciadorBD.obterConexao();
+	
 		PreparedStatement SQL = null;
 		
 		try {
@@ -131,7 +133,7 @@ private Connection conexao;
 //	Delete
 	
 	public void deletar(int id) throws SQLException{
-		conexao = GerenciadorBD.obterConexao();
+		
 		PreparedStatement SQL = null;
 		
 		try {
