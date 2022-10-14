@@ -8,8 +8,7 @@ public class GerenciadorBD {
 	private Connection conexao = null;
 	
 	public Connection obterConexao() {
-		
-//		Connection conexao = null;
+
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
