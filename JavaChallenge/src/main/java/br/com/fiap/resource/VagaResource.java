@@ -1,8 +1,10 @@
 package br.com.fiap.resource;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -44,6 +46,7 @@ public class VagaResource {
 		@Produces(MediaType.APPLICATION_JSON)
 		public VagaTO buscar(int id) {
 			return vagaBO.buscarPorId(id);
+			
 		}
 		
 		@PUT
@@ -54,5 +57,10 @@ public class VagaResource {
 			vagaBO.atualizar(vaga);
 			return Response.ok().build();
 		}
-
+		@DELETE 
+		@Path("/{id}")
+		public void excluir(@PathParam("id") int id) {
+			vagaBO.deletar(id);
+		}
+	}
 }

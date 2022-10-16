@@ -11,6 +11,7 @@ private Connection conexao;
 	public FoneCandidatoDAO() {
 		this.conexao = new GerenciadorBD().obterConexao();
 	}
+	
 	public void inserir(FoneTO fone) {
 		
 		PreparedStatement SQL = null;

@@ -9,8 +9,12 @@ import br.com.fiap.resource.FoneTO;
 public class FoneEmpresaDAO {
 private Connection conexao;
 	
+	public FoneEmpresaDAO(){
+		this.conexao = new GerenciadorBD().obterConexao();
+	}
+	
 	public void inserir(FoneTO fone) {
-		conexao = GerenciadorBD.obterConexao();
+
 		PreparedStatement SQL = null;
 		
 		try {

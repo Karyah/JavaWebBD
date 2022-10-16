@@ -3,6 +3,7 @@ package br.com.fiap.resource;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -51,5 +52,10 @@ public class EmpresaResource {
 		empresa.setId(id);
 		empresaBO.atualizar(empresa);
 		return Response.ok().build();
+	}
+	@DELETE 
+	@Path("/{id}")
+	public void excluir(@PathParam("id") int id) {
+		empresaBO.deletar(id);
 	}
 }

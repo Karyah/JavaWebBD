@@ -12,7 +12,7 @@ public class VagaBO {
 	private VagaDAO vagadao;
 	
 	
-	public void inserir(VagaTO vaga) throws SQLException  {
+	public void inserir(VagaTO vaga)  {
 		vagadao = new VagaDAO();
 		try {
 			vagadao.inserir(vaga);
@@ -36,7 +36,7 @@ public class VagaBO {
 
 	
 //  Get
-	public VagaTO buscarPorId(int id) throws SQLException {
+	public VagaTO buscarPorId(int id) {
 		vagadao = new VagaDAO();
 		try {
 			return vagadao.buscarPorID(id);
