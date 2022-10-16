@@ -3,14 +3,15 @@ package br.com.fiap.bo;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.dao.FoneCandidatoDAO;
+
+import br.com.fiap.dao.FoneEmpresaDAO;
 import br.com.fiap.resource.FoneTO;
 
-public class FoneCandidatoBO {
-	private FoneCandidatoDAO fonedao;
+public class FoneEmpresaBO {
+private FoneEmpresaDAO fonedao;
 	
 	public void inserir(FoneTO vaga)  {
-		fonedao = new FoneCandidatoDAO();
+		fonedao = new FoneEmpresaDAO();
 		try {
 			fonedao.inserir(vaga);
 		} catch (SQLException e) {
@@ -21,7 +22,7 @@ public class FoneCandidatoBO {
 //	Get all
 	
 	public List<FoneTO> listar(){
-		fonedao = new FoneCandidatoDAO();
+		fonedao = new FoneEmpresaDAO();
 		try {
 			return fonedao.listar();
 		} catch (SQLException e) {
@@ -34,7 +35,7 @@ public class FoneCandidatoBO {
 	
 //  Get
 	public FoneTO buscarPorId(int id) {
-		fonedao = new FoneCandidatoDAO();
+		fonedao = new FoneEmpresaDAO();
 		try {
 			return fonedao.buscarPorID(id);
 		} catch (SQLException e) {
@@ -46,7 +47,7 @@ public class FoneCandidatoBO {
 	
 //	Update
 	public void atualizar(FoneTO empresa) {
-		fonedao = new FoneCandidatoDAO();
+		fonedao = new FoneEmpresaDAO();
 		try {
 			fonedao.atualizar(empresa);
 		} catch (SQLException e) {
@@ -57,7 +58,7 @@ public class FoneCandidatoBO {
 	
 //	Delete
 	public void deletar(int id) {
-		fonedao = new FoneCandidatoDAO();
+		fonedao = new FoneEmpresaDAO();
 		try {
 			fonedao.deletar(id);
 		}catch(SQLException e) {

@@ -1,11 +1,38 @@
 package br.com.fiap.resource;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class FoneTO {
+	private int id;
 	private EmpresaTO empresa;
 	private CandidatoTO candidato;
 	private int sequencia;
 	private int telefone;
 	
+	
+	public FoneTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public FoneTO(int id, int sequencia, int fone, CandidatoTO objetoCandidato) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public FoneTO(int id, int sequencia2, int fone, EmpresaTO objetoEmpresa) {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public EmpresaTO getEmpresa() {
 		return empresa;
 	}

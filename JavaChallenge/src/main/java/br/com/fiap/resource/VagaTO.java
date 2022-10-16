@@ -3,7 +3,9 @@ package br.com.fiap.resource;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class VagaTO {
 	private int  id;
 	private String nome;

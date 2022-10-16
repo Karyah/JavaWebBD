@@ -75,7 +75,7 @@ public VagaDAO() {
 		
 		VagaTO vaga = new VagaTO();
 		try{
-			SQL = conexao.prepareStatement("SELECT * FROM Candidato WHERE id_candidato = ?");
+			SQL = conexao.prepareStatement("SELECT * FROM Vaga WHERE id_vaga = ?");
 			SQL.setInt(1, id);	
 			ResultSet rs = SQL.executeQuery();
 			
@@ -104,7 +104,7 @@ public VagaDAO() {
 		PreparedStatement SQL = null;
 		
 		try {
-			SQL = conexao.prepareStatement("UPDATE Candidato SET nome_vaga = ?, SET descricao_vaga =?, SET id_empresa = ?");
+			SQL = conexao.prepareStatement("UPDATE Vaga SET nome_vaga = ?, SET descricao_vaga =?, SET id_empresa = ?");
 			SQL.setString(1, vaga.getNome());
 			SQL.setString(2, vaga.getDescricao());
 			SQL.setInt(3, vaga.getEmpresa().getId());

@@ -1,4 +1,3 @@
-
 package br.com.fiap.resource;
 
 import java.util.List;
@@ -17,48 +16,47 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import br.com.fiap.bo.CandidatoBO;
+import br.com.fiap.bo.FoneEmpresaBO;
 
-@Path("/candidato")
-public class CandidatoResource {
-	
-	CandidatoBO candidatoBO = new CandidatoBO();
-	
+@Path("foneEmpresa")
+public class FoneEmpresaResource {
+
+	FoneEmpresaBO foneBO = new FoneEmpresaBO();
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response cadastrar(CandidatoTO candidato, @Context UriInfo uriInfo) {
-		candidatoBO.inserir(candidato);
+	public Response cadastrar(FoneTO fone, @Context UriInfo uriInfo) {
+		foneBO.inserir(fone);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		builder.path(Integer.toString(candidato.getId()));
+		builder.path(Integer.toString(fone.getTelefone()));
 		return Response.created(builder.build()).build();
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<CandidatoTO> listar(){
-		return candidatoBO.listar();
+	public List<FoneTO> listar(){
+		return foneBO.listar();
 		
 	}
 	
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public CandidatoTO buscar(int id) {
-		return candidatoBO.buscarPorId(id);
+	public FoneTO buscar(int id) {
+		return foneBO.buscarPorId(id);
 	}
 	
 	@PUT
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response atualizar(CandidatoTO candidato, @PathParam("id") int id) {
-		candidato.setId(id);
-		candidatoBO.atualizar(candidato);
+	public Response atualizar(FoneTO fone, @PathParam("id") int id) {
+		fone.setId(id);
+		foneBO.atualizar(fone);
 		return Response.ok().build();
 	}
 
 	@DELETE 
 	@Path("/{id}")
 	public void excluir(@PathParam("id") int id) {
-		candidatoBO.deletar(id);
+		foneBO.deletar(id);
 	}
 }

@@ -94,7 +94,7 @@ public class CandidatoDAO {
 			SQL = conexao.prepareStatement("SELECT * FROM Candidato WHERE id_candidato = ?");
 			SQL.setInt(1, id);	ResultSet rs = SQL.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				candidato.setNome(rs.getString("nome_candidato"));
 				candidato.setSenha(rs.getString("senha_candidato"));
 				String tipoUsuario = rs.getString("tipoUsuario");
