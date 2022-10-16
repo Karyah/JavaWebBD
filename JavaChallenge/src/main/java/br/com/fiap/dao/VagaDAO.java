@@ -16,28 +16,32 @@ import br.com.fiap.resource.VagaTO;
 public class VagaDAO {
 private Connection conexao;
 	
+public VagaDAO() {
+	this.conexao = new GerenciadorBD().obterConexao();
+}
 // Insert
-	public void Inserir(EmpresaTO empresa) {
-		conexao = GerenciadorBD.obterConexao();
+	public void inserir(VagaTO vaga) throws SQLException {
+
 		PreparedStatement SQL =null;
 		try {
 			SQL = conexao.prepareStatement("INSERT INTO Vaga (id_vaga, nome_vaga, descricao_vaga, id_empresa) VALUES(?,?,?,?)");
-			SQL.setInt(1, empresa.getVaga().getId());
-			SQL.setString(2, empresa.getVaga().getNome());
-			SQL.setString(3, empresa.getVaga().getDescricao());
-			SQL.setInt(4,empresa.getVaga().getEmpresa().getId());
+			SQL.setInt(1,  vaga.getId());
+			SQL.setString(2,  vaga.getNome());
+			SQL.setString(3,  vaga.getDescricao());
+			SQL.setInt(4, vaga.getEmpresa().getId());
 			
 			SQL.executeUpdate();
 			SQL.close();
 			conexao.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 //	Get all
-	public List<VagaTO> listar(){ 
-		conexao = GerenciadorBD.obterConexao();
+	public List<VagaTO> listar() throws SQLException { 
+	
 		PreparedStatement SQL = null;
 		ResultSet rs = null;
 		List<VagaTO> listaVagas = new ArrayList<>();
@@ -67,15 +71,15 @@ private Connection conexao;
 // Get By Id
 	
 	public VagaTO buscarPorID(int id) throws SQLException {
-		conexao = GerenciadorBD.obterConexao();
 		PreparedStatement SQL = null;
 		
 		VagaTO vaga = new VagaTO();
 		try{
 			SQL = conexao.prepareStatement("SELECT * FROM Candidato WHERE id_candidato = ?");
-			SQL.setInt(1, id);	ResultSet rs = SQL.executeQuery();
+			SQL.setInt(1, id);	
+			ResultSet rs = SQL.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				vaga.setNome(rs.getString("nome_vaga"));
 				vaga.setDescricao(rs.getString("descricao_vaga"));
 				int idEmpresa = rs.getInt("id_empresa");
@@ -95,5 +99,37 @@ private Connection conexao;
 		return vaga;
 	}
 	
+	public void atualizar(VagaTO vaga) throws SQLException{
+
+		PreparedStatement SQL = null;
+		
+		try {
+			SQL = conexao.prepareStatement("UPDATE Candidato SET nome_vaga = ?, SET descricao_vaga =?, SET id_empresa = ?");
+			SQL.setString(1, vaga.getNome());
+			SQL.setString(2, vaga.getDescricao());
+			SQL.setInt(3, vaga.getEmpresa().getId());
+		
+			
+			
+			SQL.close();
+			conexao.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public void deletar(int id) throws SQLException{
+		
+		PreparedStatement SQL = null;
+		
+		try {
+			SQL = conexao.prepareStatement("DELETE FROM Vaga WHERE id_vaga =  ?");
+			SQL.setInt(1, id);
+			
+			SQL.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
